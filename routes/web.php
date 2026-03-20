@@ -105,3 +105,4 @@ Route::get('Obtenerestatus', function(){
     $post = Pagina::find(3);
     dd($post->is_active);
 });
+
