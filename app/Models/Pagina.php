@@ -29,10 +29,14 @@ class Pagina extends Model
         );
     }
     
-
     public function BuscarId($id)
     {
         $registro=Pagina::find($id);
         return $registro;
+    }
+
+    public function ObtenerListado(){
+        $listadousuarios = Pagina::where('is_active', 1)->get();
+        return $listadousuarios;
     }
 }
