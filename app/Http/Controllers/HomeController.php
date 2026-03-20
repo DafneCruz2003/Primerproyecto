@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use App\Models\User;
+use App\Models\Pagina;
+use Illuminate\Support\Facades\DB;
+
+class HomeController extends Controller
+{
+    public function empresa()
+    {
+    $datos["nombre"]="Dafne Cruz";
+    $datos["fecha"]="26-15-15";
+    $datos["actividad"]="Desarrollo de software";
+    $datos["descripcion_about"]="Empresa dedicada al desarrollo de software";
+    $datos["texto_ejemplo"]="Texto de ejemplo";
+
+    $usuarios=new Pagina();
+    $datos["listadousuarios"] = $usuarios->ObtenerListado();
+    return view('empresa', $datos);
+    }
+
+    public function update(Request $request) {
+        $usuarios = new Pagina();
+        $respuesta = $usuarios->BuscarId($request->id);
+        if(!empty($respuesta)){
+            $respuesta->name = $request->name;
+            $respuesta->calle = $request->calle;
+            $respuesta->save();
+        }
+        return $respuesta;
+    }
+
+
+}
