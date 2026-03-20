@@ -34,5 +34,26 @@ class HomeController extends Controller
         return $respuesta;
     }
 
+    public function eliminarlogica(Request $request) {
+        $usuarios = new Pagina();
+        $respuesta = $usuarios->BuscarId($request->id);
+        if (!empty($respuesta)) {
+        $respuesta->is_active = 0;
+        $respuesta->save();
+        return response()->json(['success' => true, 'mensaje' => 'Registro eliminado lógicamente']);
+    }
+    return response()->json(['success' => false, 'mensaje' => 'not found'], 404);
+    }
+
+    public function eliminarfisica(Request $request) {
+        $usuarios = new Pagina();
+        $respuesta = $usuarios->BuscarId($request->id);
+        if (!empty($respuesta)) {
+        $respuesta->delete();
+        return response()->json(['success' => true, 'mensaje' => 'Registro eliminado físicamente']);
+    }
+    return response()->json(['success' => false, 'mensaje' => 'not found'], 404);
+    }
+
 
 }

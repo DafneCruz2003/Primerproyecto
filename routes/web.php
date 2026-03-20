@@ -87,6 +87,14 @@ Route::get('filtroxnumreg', function(){
     return $post;
 });
 
+//metodo se debe de llamar mediante un metodo de tipo request por ejemplo, utilizando ajax o postman
+Route::put('/actualizar-dato/{id}', [HomeController::class, 'update'])->name('dato.update');
+
+//eliminar un registro logicamente
+Route::post('/eliminarlogico', [HomeController::class, 'eliminarlogica'])->name('dato.eliminarlogico');
+//eliminar un registro fisicamente
+Route::post('/eliminarfisico', [HomeController::class, 'eliminarfisica'])->name('dato.eliminarfisico');
+
 // eliminar un determinado registro
 Route::get('eliminar_registro', function(){
     $post = Pagina::find(1);
